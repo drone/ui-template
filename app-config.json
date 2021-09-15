@@ -1,0 +1,7 @@
+{
+  "id": "opa",
+  "moduleFederationExports": {
+    "./App": "./src/App"
+  },
+  "monacoLanguages": ["yaml", "shell", "powershell"]
+}
