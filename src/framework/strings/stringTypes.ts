@@ -3,6 +3,6 @@
  * Use the command `yarn strings` to regenerate this file.
  */
 export interface StringsMap {
-  appName: string
-  harness: string
+  appName: string;
+  harness: string;
 }

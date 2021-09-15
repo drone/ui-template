@@ -3,7 +3,10 @@ import { HashRouter, Route, Switch } from 'react-router-dom'
 import { RestfulProvider } from 'restful-react'
 import { FocusStyleManager } from '@blueprintjs/core'
 import { languageLoader } from './framework/strings/languageLoader'
-import type { LangLocale, LanguageRecord } from './framework/strings/languageLoader'
+import type {
+  LangLocale,
+  LanguageRecord,
+} from './framework/strings/languageLoader'
 import { StringsContextProvider } from './framework/strings/StringsContextProvider'
 import { useStrings } from './framework/strings/String'
 
@@ -36,7 +39,7 @@ function AppWithAuthentication(props: AppProps): React.ReactElement {
       requestOptions={getRequestOptions}
       queryParams={{}} // TODO fill in queryParams if needed
       queryParamStringifyOptions={{ skipNulls: true }}
-      onResponse={response => {
+      onResponse={(response) => {
         if (!response.ok && response.status === 401) {
           // AppStorage.clear()
           // history.push({ pathname: routes.toRedirect(), search: returnUrlParams(getLoginPageURL()) })
@@ -52,15 +55,12 @@ function AppWithAuthentication(props: AppProps): React.ReactElement {
   )
 }
 
-export function App() {
+export default function App() {
   const lang: LangLocale = 'en'
   const [strings, setStrings] = useState<LanguageRecord>()
 
   useEffect(() => {
-    languageLoader(lang).then(_languages => {
-      console.log(_languages)
-      setStrings(_languages)
-    })
+    languageLoader(lang).then(setStrings)
   }, [setStrings])
 
   return strings ? (
@@ -72,7 +72,7 @@ export function App() {
             '/account/:accountId/:module/orgs/:orgIdentifier/projects/:projectIdentifier',
             '/account/:accountId/orgs/:orgIdentifier/projects/:projectIdentifier',
             '/account/:accountId/settings/organizations/:orgIdentifier/',
-            '/account/:accountId'
+            '/account/:accountId',
           ]}
         >
           <AppWithAuthentication strings={strings} />
