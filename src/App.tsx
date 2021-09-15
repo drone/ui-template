@@ -1,86 +1,54 @@
 import React, { useEffect, useState, useCallback } from 'react'
-import { HashRouter, Route, Switch } from 'react-router-dom'
 import { RestfulProvider } from 'restful-react'
 import { FocusStyleManager } from '@blueprintjs/core'
 import { languageLoader } from './framework/strings/languageLoader'
-import type {
-  LangLocale,
-  LanguageRecord,
-} from './framework/strings/languageLoader'
+import type { LanguageRecord } from './framework/strings/languageLoader'
 import { StringsContextProvider } from './framework/strings/StringsContextProvider'
-import { useStrings } from './framework/strings/String'
+import type { AppProps } from './types'
+import { Routes } from './Routes'
+import {
+  buildResfulReactRequestOptions,
+  getAPIToken,
+  handle401,
+} from 'AppUtils'
 
 FocusStyleManager.onlyShowFocusOnTabs()
 
-interface AppProps {
-  strings: Record<string, any>
-}
-
-function TestComponent() {
-  const { getString } = useStrings()
-  return <h1>Hello World 1 {getString('harness')}</h1>
-}
-
-function AppWithAuthentication(props: AppProps): React.ReactElement {
-  const token = 'foobar' // TODO: Put token here
-  const getRequestOptions = useCallback((): Partial<RequestInit> => {
-    const headers: RequestInit['headers'] = {}
-
-    if (token && token.length > 0) {
-      headers.Authorization = `Bearer ${token}`
-    }
-
-    return { headers }
-  }, [token])
-
-  return (
-    <RestfulProvider
-      base="/"
-      requestOptions={getRequestOptions}
-      queryParams={{}} // TODO fill in queryParams if needed
-      queryParamStringifyOptions={{ skipNulls: true }}
-      onResponse={(response) => {
-        if (!response.ok && response.status === 401) {
-          // AppStorage.clear()
-          // history.push({ pathname: routes.toRedirect(), search: returnUrlParams(getLoginPageURL()) })
-          // TODO Possibly pass to parent?
-          return
-        }
-      }}
-    >
-      <StringsContextProvider initialStrings={props.strings}>
-        <TestComponent />
-      </StringsContextProvider>
-    </RestfulProvider>
-  )
-}
-
-export default function App() {
-  const lang: LangLocale = 'en'
+const App: React.FC<AppProps> = (props) => {
+  const { lang = 'en', apiToken, on401 = handle401 } = props
   const [strings, setStrings] = useState<LanguageRecord>()
+  const [token, setToken] = useState(apiToken)
+  const getRequestOptions = useCallback((): Partial<RequestInit> => {
+    return buildResfulReactRequestOptions(token)
+  }, [token])
 
   useEffect(() => {
     languageLoader(lang).then(setStrings)
   }, [setStrings])
 
+  useEffect(() => {
+    if (!apiToken) {
+      setToken(getAPIToken())
+    }
+  }, [apiToken])
+
   return strings ? (
-    <HashRouter>
-      <Switch>
-        <Route
-          path={[
-            // this path is needed for AppStoreProvider to populate accountId, orgId and projectId
-            '/account/:accountId/:module/orgs/:orgIdentifier/projects/:projectIdentifier',
-            '/account/:accountId/orgs/:orgIdentifier/projects/:projectIdentifier',
-            '/account/:accountId/settings/organizations/:orgIdentifier/',
-            '/account/:accountId',
-          ]}
-        >
-          <AppWithAuthentication strings={strings} />
-        </Route>
-        <Route path="/">
-          <h1>No auth</h1>
-        </Route>
-      </Switch>
-    </HashRouter>
+    <RestfulProvider
+      base="/"
+      requestOptions={getRequestOptions}
+      queryParams={{}} // TODO: fill in queryParams if needed
+      queryParamStringifyOptions={{ skipNulls: true }}
+      onResponse={(response) => {
+        if (!response.ok && response.status === 401) {
+          on401()
+        }
+      }}
+    >
+      <StringsContextProvider initialStrings={strings}>
+        <Routes />
+      </StringsContextProvider>
+    </RestfulProvider>
   ) : null
 }
+
+export default App
