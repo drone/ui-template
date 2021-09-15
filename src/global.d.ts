@@ -49,3 +49,5 @@ declare interface Window {
 }
 
 declare const monaco: any
+
+declare module '*.scss'

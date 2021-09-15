@@ -11,6 +11,7 @@ import {
   getAPIToken,
   handle401,
 } from 'AppUtils'
+import './App.module.scss'
 
 FocusStyleManager.onlyShowFocusOnTabs()
 

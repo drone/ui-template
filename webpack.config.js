@@ -13,11 +13,14 @@ const CircularDependencyPlugin = require('circular-dependency-plugin')
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const JSONGeneratorPlugin = require('@wings-software/jarvis/lib/webpack/json-generator-plugin').default
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin
+const JSONGeneratorPlugin = require('@wings-software/jarvis/lib/webpack/json-generator-plugin')
+  .default
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin')
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
-const GenerateStringTypesPlugin = require('./scripts/webpack/GenerateStringTypesPlugin').GenerateStringTypesPlugin
+const GenerateStringTypesPlugin = require('./scripts/webpack/GenerateStringTypesPlugin')
+  .GenerateStringTypesPlugin
 
 const DEV = process.env.NODE_ENV === 'development'
 const ON_PREM = `${process.env.ON_PREM}` === 'true'
@@ -31,37 +34,46 @@ const config = {
     path: path.resolve(__dirname, 'dist'),
     publicPath: DEV ? '/' : '',
     filename: DEV ? 'static/[name].js' : 'static/[name].[contenthash:6].js',
-    chunkFilename: DEV ? 'static/[name].[id].js' : 'static/[name].[id].[contenthash:6].js',
-    pathinfo: false
+    chunkFilename: DEV
+      ? 'static/[name].[id].js'
+      : 'static/[name].[id].[contenthash:6].js',
+    pathinfo: false,
   },
   output: {
-    publicPath: 'auto'
+    publicPath: 'auto',
   },
   devtool: DEV ? 'cheap-module-source-map' : 'hidden-source-map',
   devServer: {
     contentBase: false,
     port: 8181,
     https: {
-      key: fs.readFileSync(path.resolve(__dirname, './certificates/localhost-key.pem')),
-      cert: fs.readFileSync(path.resolve(__dirname, './certificates/localhost.pem'))
+      key: fs.readFileSync(
+        path.resolve(__dirname, './certificates/localhost-key.pem'),
+      ),
+      cert: fs.readFileSync(
+        path.resolve(__dirname, './certificates/localhost.pem'),
+      ),
     },
     proxy: Object.fromEntries(
       Object.entries(devServerProxyConfig).map(([key, value]) => [
         key,
-        Object.assign({ logLevel: 'info', secure: false, changeOrigin: true }, value)
-      ])
+        Object.assign(
+          { logLevel: 'info', secure: false, changeOrigin: true },
+          value,
+        ),
+      ]),
     ),
     stats: {
       children: false,
       maxModules: 0,
       chunks: false,
       assets: false,
-      modules: false
-    }
+      modules: false,
+    },
   },
   stats: {
     modules: false,
-    children: false
+    children: false,
   },
   cache: DEV ? { type: 'filesystem' } : false,
   module: {
@@ -69,7 +81,7 @@ const config = {
       {
         test: /\.m?js$/,
         include: /node_modules/,
-        type: 'javascript/auto'
+        type: 'javascript/auto',
       },
       {
         test: /\.(j|t)sx?$/,
@@ -78,10 +90,10 @@ const config = {
           {
             loader: 'ts-loader',
             options: {
-              transpileOnly: true
-            }
-          }
-        ]
+              transpileOnly: true,
+            },
+          },
+        ],
       },
       {
         test: /\.module\.scss$/,
@@ -91,8 +103,8 @@ const config = {
           {
             loader: '@wings-software/css-types-loader',
             options: {
-              prettierConfig: CONTEXT
-            }
+              prettierConfig: CONTEXT,
+            },
           },
           {
             loader: 'css-loader',
@@ -100,22 +112,24 @@ const config = {
               importLoaders: 1,
               modules: {
                 mode: 'local',
-                localIdentName: DEV ? '[name]_[local]_[hash:base64:6]' : '[hash:base64:6]',
-                exportLocalsConvention: 'camelCaseOnly'
-              }
-            }
+                localIdentName: DEV
+                  ? '[name]_[local]_[hash:base64:6]'
+                  : '[hash:base64:6]',
+                exportLocalsConvention: 'camelCaseOnly',
+              },
+            },
           },
           {
             loader: 'sass-loader',
             options: {
               sassOptions: {
-                includePaths: [path.join(CONTEXT, 'src')]
+                includePaths: [path.join(CONTEXT, 'src')],
               },
               sourceMap: false,
-              implementation: require('sass')
-            }
-          }
-        ]
+              implementation: require('sass'),
+            },
+          },
+        ],
       },
       {
         test: /(?<!\.module)\.scss$/,
@@ -126,19 +140,19 @@ const config = {
             loader: 'css-loader',
             options: {
               importLoaders: 1,
-              modules: false
-            }
+              modules: false,
+            },
           },
           {
             loader: 'sass-loader',
             options: {
               sassOptions: {
-                includePaths: [path.join(CONTEXT, 'src')]
+                includePaths: [path.join(CONTEXT, 'src')],
               },
-              implementation: require('sass')
-            }
-          }
-        ]
+              implementation: require('sass'),
+            },
+          },
+        ],
       },
       {
         test: /\.(jpg|jpeg|png|svg|gif)$/,
@@ -147,57 +161,59 @@ const config = {
             loader: 'url-loader',
             options: {
               limit: 2000,
-              fallback: 'file-loader'
-            }
-          }
-        ]
+              fallback: 'file-loader',
+            },
+          },
+        ],
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.ttf$/,
-        loader: 'file-loader'
+        loader: 'file-loader',
       },
       {
         test: /\.ya?ml$/,
         type: 'json',
         use: [
           {
-            loader: 'yaml-loader'
-          }
-        ]
+            loader: 'yaml-loader',
+          },
+        ],
       },
       {
         test: /\.gql$/,
-        type: 'asset/source'
+        type: 'asset/source',
       },
       {
         test: /\.(mp4)$/,
         use: [
           {
-            loader: 'file-loader'
-          }
-        ]
-      }
-    ]
+            loader: 'file-loader',
+          },
+        ],
+      },
+    ],
   },
   resolve: {
-    extensions: ['.mjs', '.js', '.ts', '.tsx', '.json', '.ttf'],
-    plugins: [new TsconfigPathsPlugin()]
+    extensions: ['.mjs', '.js', '.ts', '.tsx', '.json', '.ttf', '.scss'],
+    plugins: [new TsconfigPathsPlugin()],
   },
   optimization: {
     splitChunks: {
-      chunks: 'all'
-    }
-  }
+      chunks: 'all',
+    },
+  },
 }
 
 const commonPlugins = [
   new MiniCssExtractPlugin({
     filename: DEV ? 'static/[name].css' : 'static/[name].[contenthash:6].css',
-    chunkFilename: DEV ? 'static/[name].[id].css' : 'static/[name].[id].[contenthash:6].css'
+    chunkFilename: DEV
+      ? 'static/[name].[id].css'
+      : 'static/[name].[id].[contenthash:6].css',
   }),
   new HTMLWebpackPlugin({
     template: 'src/index.html',
@@ -206,27 +222,27 @@ const commonPlugins = [
     minify: false,
     templateParameters: {
       __DEV__: DEV,
-      __ON_PREM__: ON_PREM
-    }
+      __ON_PREM__: ON_PREM,
+    },
   }),
   new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
   new webpack.DefinePlugin({
     'process.env': '{}', // required for @blueprintjs/core
     __DEV__: DEV,
-    __ON_PREM__: ON_PREM
+    __ON_PREM__: ON_PREM,
   }),
   new MonacoWebpackPlugin({
     // available options are documented at https://github.com/Microsoft/monaco-editor-webpack-plugin#options
-    languages: appConfigJson.monacoLanguages
+    languages: appConfigJson.monacoLanguages,
   }),
-  new GenerateStringTypesPlugin()
+  new GenerateStringTypesPlugin(),
 ]
 
 const devOnlyPlugins = [
   new webpack.WatchIgnorePlugin({
-    paths: [/node_modules(?!\/@wings-software)/, /\.d\.ts$/, /stringTypes\.ts/]
+    paths: [/node_modules(?!\/@wings-software)/, /\.d\.ts$/, /stringTypes\.ts/],
   }),
-  new ForkTsCheckerWebpackPlugin()
+  new ForkTsCheckerWebpackPlugin(),
 ]
 
 const prodOnlyPlugins = [
@@ -234,13 +250,13 @@ const prodOnlyPlugins = [
     content: {
       version: packageJson.version,
       gitCommit: process.env.GIT_COMMIT,
-      gitBranch: process.env.GIT_BRANCH
+      gitBranch: process.env.GIT_BRANCH,
     },
-    filename: 'static/version.json'
+    filename: 'static/version.json',
   }),
   new CircularDependencyPlugin({
     exclude: /node_modules/,
-    failOnError: true
+    failOnError: true,
   }),
   new ModuleFederationPlugin({
     name: appConfigJson.id,
@@ -251,18 +267,18 @@ const prodOnlyPlugins = [
       ...deps,
       react: {
         singleton: true,
-        requiredVersion: deps.react
+        requiredVersion: deps.react,
       },
       'react-dom': {
         singleton: true,
-        requiredVersion: deps['react-dom']
+        requiredVersion: deps['react-dom'],
       },
       'react-router-dom': {
         singleton: true,
-        requiredVersion: deps['react-router-dom']
-      }
-    }
-  })
+        requiredVersion: deps['react-router-dom'],
+      },
+    },
+  }),
 ]
 
 config.plugins = commonPlugins.concat(DEV ? devOnlyPlugins : prodOnlyPlugins)

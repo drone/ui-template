@@ -1,11 +1,6 @@
+import { TestPage } from 'pages/test-page/TestPage'
 import React from 'react'
 import { HashRouter, Route, Switch } from 'react-router-dom'
-import { useStrings } from './framework/strings/String'
-
-function TestComponent() {
-  const { getString } = useStrings()
-  return <h1>Hello World 1 {getString('harness')}</h1>
-}
 
 export const Routes: React.FC = () => {
   return (
@@ -20,7 +15,7 @@ export const Routes: React.FC = () => {
             '/account/:accountId',
           ]}
         >
-          <TestComponent />
+          <TestPage />
         </Route>
         <Route path="/">
           <h1>No auth</h1>
