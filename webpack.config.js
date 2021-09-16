@@ -236,6 +236,27 @@ const commonPlugins = [
     languages: appConfigJson.monacoLanguages,
   }),
   new GenerateStringTypesPlugin(),
+  new ModuleFederationPlugin({
+    name: appConfigJson.id,
+    filename: 'remoteEntry.js',
+    remotes: {},
+    exposes: appConfigJson.moduleFederationExports,
+    shared: {
+      ...deps,
+      react: {
+        singleton: true,
+        requiredVersion: deps.react,
+      },
+      'react-dom': {
+        singleton: true,
+        requiredVersion: deps['react-dom'],
+      },
+      'react-router-dom': {
+        singleton: true,
+        requiredVersion: deps['react-router-dom'],
+      },
+    },
+  }),
 ]
 
 const devOnlyPlugins = [
@@ -257,27 +278,6 @@ const prodOnlyPlugins = [
   new CircularDependencyPlugin({
     exclude: /node_modules/,
     failOnError: true,
-  }),
-  new ModuleFederationPlugin({
-    name: appConfigJson.id,
-    filename: 'remoteEntry.js',
-    remotes: {},
-    exposes: appConfigJson.moduleFederationExports,
-    shared: {
-      ...deps,
-      react: {
-        singleton: true,
-        requiredVersion: deps.react,
-      },
-      'react-dom': {
-        singleton: true,
-        requiredVersion: deps['react-dom'],
-      },
-      'react-router-dom': {
-        singleton: true,
-        requiredVersion: deps['react-router-dom'],
-      },
-    },
   }),
 ]
 

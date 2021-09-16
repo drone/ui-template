@@ -16,7 +16,7 @@ import './App.module.scss'
 FocusStyleManager.onlyShowFocusOnTabs()
 
 const App: React.FC<AppProps> = (props) => {
-  const { lang = 'en', apiToken, on401 = handle401 } = props
+  const { standalone, lang = 'en', apiToken, on401 = handle401 } = props
   const [strings, setStrings] = useState<LanguageRecord>()
   const [token, setToken] = useState(apiToken)
   const getRequestOptions = useCallback((): Partial<RequestInit> => {
@@ -46,7 +46,7 @@ const App: React.FC<AppProps> = (props) => {
       }}
     >
       <StringsContextProvider initialStrings={strings}>
-        <Routes />
+        <Routes standalone={standalone} />
       </StringsContextProvider>
     </RestfulProvider>
   ) : null

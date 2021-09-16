@@ -1,8 +1,11 @@
 import { TestPage } from 'pages/test-page/TestPage'
 import React from 'react'
 import { HashRouter, Route, Switch } from 'react-router-dom'
+import type { AppProps } from 'types'
 
-export const Routes: React.FC = () => {
+export const Routes: React.FC<Pick<AppProps, 'standalone'>> = ({
+  standalone,
+}) => {
   return (
     <HashRouter>
       <Switch>
@@ -15,10 +18,16 @@ export const Routes: React.FC = () => {
             '/account/:accountId',
           ]}
         >
-          <TestPage />
+          <>
+            <TestPage />
+            Standalone: {standalone ? 'true' : 'false'}
+          </>
         </Route>
         <Route path="/">
-          <h1>No auth</h1>
+          <>
+            <h1>No auth</h1>
+            Standalone: {standalone ? 'true' : 'false'}
+          </>
         </Route>
       </Switch>
     </HashRouter>
