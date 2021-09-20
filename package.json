@@ -24,7 +24,7 @@
     "dev": "NODE_ENV=development webpack serve --progress",
     "watch": "yarn clean && NODE_ENV=development webpack --watch --progress",
     "services": "npm-run-all services:*",
-    "services:ti-service": "restful-react import --config restful-react.config.js ti-service",
+    "services:petstore": "restful-react import --config restful-react.config.js petstore",
     "postservices": "prettier --write src/services/**/*.tsx",
     "build": "webpack --mode production",
     "coverage": "yarn test --coverage",

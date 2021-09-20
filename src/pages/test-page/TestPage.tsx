@@ -1,6 +1,6 @@
 import React from 'react'
-import css from './TestPage.module.scss'
 import { useStrings } from '../../framework/strings/String'
+import css from './TestPage.module.scss'
 
 export const TestPage: React.FC = () => {
   const { getString } = useStrings()

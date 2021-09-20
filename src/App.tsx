@@ -10,7 +10,7 @@ import {
   buildResfulReactRequestOptions,
   getAPIToken,
   handle401,
-} from 'AppUtils'
+} from './AppUtils'
 import './App.module.scss'
 
 FocusStyleManager.onlyShowFocusOnTabs()
@@ -25,7 +25,7 @@ const App: React.FC<AppProps> = (props) => {
 
   useEffect(() => {
     languageLoader(lang).then(setStrings)
-  }, [setStrings])
+  }, [lang, setStrings])
 
   useEffect(() => {
     if (!apiToken) {

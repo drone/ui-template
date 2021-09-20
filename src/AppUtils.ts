@@ -2,14 +2,16 @@
  * Get API token to use in Restful React calls.
  */
 export function getAPIToken(): string | undefined {
+  // eslint-disable-next-line no-console
   console.error('TODO: Implement getAPIToken()...')
-  return undefined
+  return 'TO BE IMPLEMENTED'
 }
 
 /**
  * Handle 401 error from API.
  */
-export function handle401() {
+export function handle401(): void {
+  // eslint-disable-next-line no-console
   console.error('TODO: Handle 401 error...')
 }
 
@@ -23,7 +25,7 @@ export function buildResfulReactRequestOptions(
 ): Partial<RequestInit> {
   const headers: RequestInit['headers'] = {}
 
-  if (!!token?.length) {
+  if (token?.length) {
     headers.Authorization = `Bearer ${token}`
   }
 

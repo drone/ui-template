@@ -45,7 +45,6 @@ declare module '*.gql' {
 
 declare interface Window {
   apiUrl: string
-  Harness: {}
 }
 
 declare const monaco: any
