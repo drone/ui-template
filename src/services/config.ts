@@ -2,9 +2,7 @@ import { mapKeys } from 'lodash-es'
 import qs from 'qs'
 
 export const getConfig = (str: string): string => {
-  return window.apiUrl
-    ? `${window.apiUrl}/${str}`
-    : window.location.pathname.replace('ng/', '') + str
+  return window.apiUrl ? `${window.apiUrl}/${str}` : window.location.pathname.replace('ng/', '') + str
 }
 
 export interface GetUsingFetchProps<
@@ -41,7 +39,7 @@ export const getUsingFetch = <
     requestOptions?: RequestInit
     mock?: TData
   },
-  signal?: RequestInit['signal'],
+  signal?: RequestInit['signal']
 ): Promise<TData> => {
   if (props.mock) return Promise.resolve(props.mock)
   let url = base + path
@@ -51,8 +49,8 @@ export const getUsingFetch = <
   return fetch(url, {
     signal,
     ...(props.requestOptions || {}),
-    headers: getHeaders(props.requestOptions?.headers),
-  }).then((res) => {
+    headers: getHeaders(props.requestOptions?.headers)
+  }).then(res => {
     const contentType = res.headers.get('content-type') || ''
     if (contentType.toLowerCase().indexOf('application/json') > -1) {
       return res.json()
@@ -100,7 +98,7 @@ export const mutateUsingFetch = <
     requestOptions?: RequestInit
     mock?: TData
   },
-  signal?: RequestInit['signal'],
+  signal?: RequestInit['signal']
 ): Promise<TData> => {
   if (props.mock) return Promise.resolve(props.mock)
   let url = base + path
@@ -130,8 +128,8 @@ export const mutateUsingFetch = <
     body,
     signal,
     ...(props.requestOptions || {}),
-    headers: getHeaders(props.requestOptions?.headers),
-  }).then((res) => {
+    headers: getHeaders(props.requestOptions?.headers)
+  }).then(res => {
     const contentType = res.headers.get('content-type') || ''
     if (contentType.toLowerCase().indexOf('application/json') > -1) {
       return res.json()
@@ -140,17 +138,15 @@ export const mutateUsingFetch = <
   })
 }
 
-const getHeaders = (
-  headers: RequestInit['headers'] = {},
-): RequestInit['headers'] => {
+const getHeaders = (headers: RequestInit['headers'] = {}): RequestInit['headers'] => {
   const retHeaders: RequestInit['headers'] = {
-    'content-type': 'application/json',
+    'content-type': 'application/json'
   }
 
   // add/overwrite passed headers
   Object.assign(
     retHeaders,
-    mapKeys(headers, (_value, key) => key.toLowerCase()),
+    mapKeys(headers, (_value, key) => key.toLowerCase())
   )
 
   return retHeaders

@@ -6,16 +6,12 @@ import type { LanguageRecord } from './framework/strings/languageLoader'
 import { StringsContextProvider } from './framework/strings/StringsContextProvider'
 import type { AppProps } from './types'
 import { Routes } from './Routes'
-import {
-  buildResfulReactRequestOptions,
-  getAPIToken,
-  handle401,
-} from './AppUtils'
+import { buildResfulReactRequestOptions, getAPIToken, handle401 } from './AppUtils'
 import './App.module.scss'
 
 FocusStyleManager.onlyShowFocusOnTabs()
 
-const App: React.FC<AppProps> = (props) => {
+const App: React.FC<AppProps> = props => {
   const { standalone, lang = 'en', apiToken, on401 = handle401 } = props
   const [strings, setStrings] = useState<LanguageRecord>()
   const [token, setToken] = useState(apiToken)
@@ -39,7 +35,7 @@ const App: React.FC<AppProps> = (props) => {
       requestOptions={getRequestOptions}
       queryParams={{}} // TODO: fill in queryParams if needed
       queryParamStringifyOptions={{ skipNulls: true }}
-      onResponse={(response) => {
+      onResponse={response => {
         if (!response.ok && response.status === 401) {
           on401()
         }

@@ -12,9 +12,7 @@ export interface StringsContextValue {
   getString?(key: StringKeys, vars?: Record<string, any>): string
 }
 
-export const StringsContext = React.createContext<StringsContextValue>(
-  {} as StringsContextValue,
-)
+export const StringsContext = React.createContext<StringsContextValue>({} as StringsContextValue)
 
 export function useStringsContext(): StringsContextValue {
   return React.useContext(StringsContext)

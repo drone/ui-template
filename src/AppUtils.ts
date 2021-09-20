@@ -20,9 +20,7 @@ export function handle401(): void {
  * @param token API token
  * @returns RequestInit object.
  */
-export function buildResfulReactRequestOptions(
-  token?: string,
-): Partial<RequestInit> {
+export function buildResfulReactRequestOptions(token?: string): Partial<RequestInit> {
   const headers: RequestInit['headers'] = {}
 
   if (token?.length) {

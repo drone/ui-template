@@ -3,9 +3,7 @@ export type LangLocale = 'es' | 'en' | 'en-IN' | 'en-US' | 'en-UK'
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type LanguageRecord = Record<string, Record<string, any>>
 
-export function languageLoader(
-  langId: LangLocale = 'en',
-): Promise<LanguageRecord> {
+export function languageLoader(langId: LangLocale = 'en'): Promise<LanguageRecord> {
   switch (langId) {
     case 'es':
       return import('../../strings.es.yaml')

@@ -3,9 +3,7 @@ import { HashRouter, Route, Switch } from 'react-router-dom'
 import type { AppProps } from 'types'
 import { TestPage } from 'pages/test-page/TestPage'
 
-export const Routes: React.FC<Pick<AppProps, 'standalone'>> = ({
-  standalone,
-}) => {
+export const Routes: React.FC<Pick<AppProps, 'standalone'>> = ({ standalone }) => {
   return (
     <HashRouter>
       <Switch>
@@ -15,7 +13,7 @@ export const Routes: React.FC<Pick<AppProps, 'standalone'>> = ({
             '/account/:accountId/:module/orgs/:orgIdentifier/projects/:projectIdentifier',
             '/account/:accountId/orgs/:orgIdentifier/projects/:projectIdentifier',
             '/account/:accountId/settings/organizations/:orgIdentifier/',
-            '/account/:accountId',
+            '/account/:accountId'
           ]}
         >
           <>
