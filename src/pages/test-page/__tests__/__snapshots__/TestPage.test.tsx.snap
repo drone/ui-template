@@ -2,8 +2,14 @@
 
 exports[`Test TestPage Test rendering 1`] = `
 <div>
-  <h2>
+  <h1>
+    Hello World 1 
+    harness
+  </h1>
+  <div
+    class="container"
+  >
     This is a test page
-  </h2>
+  </div>
 </div>
 `;
