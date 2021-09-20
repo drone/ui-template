@@ -3,7 +3,7 @@
 exports[`Test TestPage Test rendering 1`] = `
 <div>
   <h1>
-    Hello World 1 
+    Hello 
     harness
   </h1>
   <div
