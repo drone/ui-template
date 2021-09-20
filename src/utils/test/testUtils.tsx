@@ -1,3 +1,6 @@
+/*
+ * This file contains utilities for testing.
+ */
 import React from 'react'
 import { UseGetProps, UseGetReturn, RestfulProvider } from 'restful-react'
 import { queryByAttribute } from '@testing-library/react'
@@ -123,3 +126,39 @@ export const TestWrapper: React.FC<TestWrapperProps> = props => {
 
 export const queryByNameAttribute = (name: string, container: HTMLElement): HTMLElement | null =>
   queryByAttribute('name', container, name)
+
+/**
+ * Test utility to mock any import. It's better than jest.mock() because you can use
+ * mockImport() inside tests.
+ *
+ * Sample:
+ *
+ *  mockImport('services/cf', {
+ *    useGetFeatureFlag: () => ({
+ *      data: mockFeatureFlag,
+ *      loading: undefined,
+ *      error: undefined,
+ *      refetch: jest.fn()
+ *     })
+ *  })
+ *
+ * Mock an `export default`:
+ *
+ *  mockImport('@cf/components/FlagActivation/FlagActivation', {
+ *     // FlagActivation is exported as `export default`
+ *     default: function FlagActivation() {
+ *       return <div>FlagActivation</div>
+ *    }
+ *  })
+ *
+ * @param moduleName
+ * @param implementation
+ */
+export function mockImport(moduleName: string, implementation: Record<string, any>): void {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires, global-require
+  const module = require(moduleName)
+
+  Object.keys(implementation).forEach(key => {
+    module[key] = implementation?.[key]
+  })
+}

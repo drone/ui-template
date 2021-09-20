@@ -1,6 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test TestPage Test rendering 1`] = `
+exports[`Test TestPage Test error 1`] = `
+<div>
+  <p
+    class="StyledProps--font StyledProps--main StyledProps--font-variation-form-message-danger"
+  >
+    something wrong happened
+  </p>
+</div>
+`;
+
+exports[`Test TestPage Test loading 1`] = `
+<div>
+  <p
+    class="StyledProps--font StyledProps--main"
+  >
+    Loading...
+  </p>
+</div>
+`;
+
+exports[`Test TestPage Test rendering data 1`] = `
 <div>
   <h1>
     Hello 
@@ -11,5 +31,14 @@ exports[`Test TestPage Test rendering 1`] = `
   >
     This is a test page
   </div>
+  <p
+    class="StyledProps--font StyledProps--main StyledProps--font-variation-yaml"
+  >
+    <pre>
+      {
+  "foo": "bar"
+}
+    </pre>
+  </p>
 </div>
 `;

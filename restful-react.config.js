@@ -5,6 +5,7 @@
 const customGenerator = require('./scripts/swagger-custom-generator.js')
 
 module.exports = {
+  // TODO: Remove this service in your application
   petstore: {
     output: 'src/services/petstore/index.tsx',
     file: 'src/services/petstore/swagger.json',

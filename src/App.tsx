@@ -7,7 +7,7 @@ import { StringsContextProvider } from './framework/strings/StringsContextProvid
 import type { AppProps } from './types'
 import { Routes } from './Routes'
 import { buildResfulReactRequestOptions, getAPIToken, handle401 } from './AppUtils'
-import './App.module.scss'
+import './App.scss'
 
 FocusStyleManager.onlyShowFocusOnTabs()
 

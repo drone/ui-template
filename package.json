@@ -29,7 +29,7 @@
     "setup-github-registry": "sh scripts/setup-github-registry.sh",
     "strings": "npm-run-all strings:*",
     "strings:genTypes": "node scripts/strings/generateTypesCli.mjs",
-    "fmt": "prettier --write \"./src/**/*.{ts,tsx,css}\""
+    "fmt": "prettier --write \"./src/**/*.{ts,tsx,css,scss}\""
   },
   "dependencies": {
     "@blueprintjs/core": "3.26.1",

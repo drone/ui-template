@@ -9,7 +9,6 @@ export const Routes: React.FC<Pick<AppProps, 'standalone'>> = ({ standalone }) =
       <Switch>
         <Route
           path={[
-            // this path is needed for AppStoreProvider to populate accountId, orgId and projectId
             '/account/:accountId/:module/orgs/:orgIdentifier/projects/:projectIdentifier',
             '/account/:accountId/orgs/:orgIdentifier/projects/:projectIdentifier',
             '/account/:accountId/settings/organizations/:orgIdentifier/',

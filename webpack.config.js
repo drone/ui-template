@@ -58,7 +58,7 @@ const config = {
       Object.entries(devServerProxyConfig).map(([key, value]) => [
         key,
         Object.assign(
-          { logLevel: 'info', secure: false, changeOrigin: true },
+          { logLevel: 'debug', secure: false, changeOrigin: true },
           value,
         ),
       ]),
