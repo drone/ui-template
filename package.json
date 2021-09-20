@@ -24,7 +24,7 @@
     "services": "npm-run-all services:*",
     "services:petstore": "restful-react import --config restful-react.config.js petstore",
     "postservices": "prettier --write src/services/**/*.tsx",
-    "build": "webpack --mode production",
+    "build": "yarn clean; webpack --mode production",
     "coverage": "yarn test --coverage",
     "setup-github-registry": "sh scripts/setup-github-registry.sh",
     "strings": "npm-run-all strings:*",
