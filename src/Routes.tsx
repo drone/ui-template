@@ -1,15 +1,11 @@
 import React from 'react'
 import { HashRouter, Route, Switch } from 'react-router-dom'
-import type { AppProps } from 'types'
+import type { AppProps } from 'AppProps'
 import { SignInPage } from 'pages/signin/SignInPage'
 import { NotFoundPage } from 'pages/404/NotFoundPage'
 
-export const RoutePaths = {
+const RoutePaths = {
   signIn: '/signin'
-} as const
-
-export const RouteURLs = {
-  toSignIn: () => RoutePaths.signIn
 } as const
 
 const Routes: React.FC = () => (
@@ -22,6 +18,10 @@ const Routes: React.FC = () => (
     </Route>
   </Switch>
 )
+
+export const RouteURLs = {
+  toSignIn: () => RoutePaths.signIn
+} as const
 
 export const RouteDefinitions: React.FC<Pick<AppProps, 'standalone'>> = ({ standalone }) =>
   standalone ? (

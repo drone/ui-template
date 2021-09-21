@@ -31,7 +31,7 @@ function flattenKeys(data, parentPath = []) {
 }
 
 async function generateTypes() {
-  const i18nContent = await fs.promises.readFile(path.resolve(process.cwd(), `src/strings.en.yaml`), 'utf8')
+  const i18nContent = await fs.promises.readFile(path.resolve(process.cwd(), `src/i18n/strings.en.yaml`), 'utf8')
 
   const allData = [
     {
