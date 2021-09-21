@@ -22,6 +22,9 @@ export interface AppProps {
   /** Flag to tell if App is mounted as a standalone app */
   standalone: boolean
 
+  /** Base path from parent app when being embedded */
+  basePath?: string
+
   /** Language to use in the app, default is 'en' */
   lang?: LangLocale
 

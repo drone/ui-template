@@ -40,7 +40,7 @@ const config = {
   devtool: DEV ? 'cheap-module-source-map' : 'hidden-source-map',
   devServer: {
     contentBase: false,
-    port: 8181,
+    port: 8080,
     https: {
       key: fs.readFileSync(path.resolve(__dirname, './certificates/localhost-key.pem')),
       cert: fs.readFileSync(path.resolve(__dirname, './certificates/localhost.pem'))
