@@ -10,6 +10,6 @@ module.exports = {
   // in your application along with command `services:petstore` in package.json and src/services/petstore.
   '/petstore': {
     target: targetLocalHost ? 'https://petstore.swagger.io/v2' : baseUrl,
-    pathRewrite: { '^/petstore': '' },
-  },
+    pathRewrite: { '^/petstore': '' }
+  }
 }
