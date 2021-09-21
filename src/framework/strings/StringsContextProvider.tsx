@@ -36,8 +36,7 @@ export function StringsContextProvider(props: StringsContextProviderProps): Reac
           ...(languageLoader() as any)
         },
         getString: props.getString
-      }}
-    >
+      }}>
       {props.children}
     </StringsContext.Provider>
   )

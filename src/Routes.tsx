@@ -1,32 +1,33 @@
 import React from 'react'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 import type { AppProps } from 'types'
-import { TestPage } from 'pages/test-page/TestPage'
+import { SignInPage } from 'pages/signin/SignInPage'
+import { NotFoundPage } from 'pages/404/NotFoundPage'
 
-export const Routes: React.FC<Pick<AppProps, 'standalone'>> = ({ standalone }) => {
-  return (
+export const RoutePaths = {
+  signIn: '/signin'
+} as const
+
+export const RouteURLs = {
+  toSignIn: () => RoutePaths.signIn
+} as const
+
+const Routes: React.FC = () => (
+  <Switch>
+    <Route path={RoutePaths.signIn}>
+      <SignInPage />
+    </Route>
+    <Route path="/">
+      <NotFoundPage />
+    </Route>
+  </Switch>
+)
+
+export const RouteDefinitions: React.FC<Pick<AppProps, 'standalone'>> = ({ standalone }) =>
+  standalone ? (
     <HashRouter>
-      <Switch>
-        <Route
-          path={[
-            '/account/:accountId/:module/orgs/:orgIdentifier/projects/:projectIdentifier',
-            '/account/:accountId/orgs/:orgIdentifier/projects/:projectIdentifier',
-            '/account/:accountId/settings/organizations/:orgIdentifier/',
-            '/account/:accountId'
-          ]}
-        >
-          <>
-            <TestPage />
-            Standalone: {String(standalone)}
-          </>
-        </Route>
-        <Route path="/">
-          <>
-            <h1>No auth</h1>
-            Standalone: {String(standalone)}
-          </>
-        </Route>
-      </Switch>
+      <Routes />
     </HashRouter>
+  ) : (
+    <Routes />
   )
-}

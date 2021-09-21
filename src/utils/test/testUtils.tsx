@@ -13,6 +13,9 @@ import { enableMapSet } from 'immer'
 import { StringsContext } from 'framework/strings'
 import './testUtils.module.scss'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type UnknownType = any
+
 export type UseGetMockData<TData, TError = undefined, TQueryParams = undefined, TPathParams = undefined> = Required<
   UseGetProps<TData, TError, TQueryParams, TPathParams>
 >['mock']
@@ -103,7 +106,7 @@ export const TestWrapper: React.FC<TestWrapperProps> = props => {
   // }, [path, pathParams, queryParams])
 
   return (
-    <StringsContext.Provider value={{ data: stringsData as any, getString }}>
+    <StringsContext.Provider value={{ data: stringsData as UnknownType, getString }}>
       <Router history={history}>
         <ModalProvider>
           <RestfulProvider base="/">
@@ -154,7 +157,7 @@ export const queryByNameAttribute = (name: string, container: HTMLElement): HTML
  * @param moduleName
  * @param implementation
  */
-export function mockImport(moduleName: string, implementation: Record<string, any>): void {
+export function mockImport(moduleName: string, implementation: Record<string, UnknownType>): void {
   // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires, global-require
   const module = require(moduleName)
 

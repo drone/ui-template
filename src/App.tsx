@@ -5,7 +5,7 @@ import { languageLoader } from './framework/strings/languageLoader'
 import type { LanguageRecord } from './framework/strings/languageLoader'
 import { StringsContextProvider } from './framework/strings/StringsContextProvider'
 import type { AppProps } from './types'
-import { Routes } from './Routes'
+import { RouteDefinitions } from './Routes'
 import { buildResfulReactRequestOptions, getAPIToken, handle401 } from './AppUtils'
 import './App.scss'
 
@@ -39,10 +39,9 @@ const App: React.FC<AppProps> = props => {
         if (!response.ok && response.status === 401) {
           on401()
         }
-      }}
-    >
+      }}>
       <StringsContextProvider initialStrings={strings}>
-        <Routes standalone={standalone} />
+        <RouteDefinitions standalone={standalone} />
       </StringsContextProvider>
     </RestfulProvider>
   ) : null
