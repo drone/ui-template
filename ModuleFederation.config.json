@@ -1,0 +1,6 @@
+{
+  "name": "opa",
+  "exposes": {
+    "./App": "./src/App"
+  }
+}

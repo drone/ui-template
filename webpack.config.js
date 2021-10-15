@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires, no-console  */
 const packageJson = require('./package.json')
-const appConfigJson = require('./app.config.json')
+const federationConfigJson = require('./ModuleFederation.config.json')
 const buildVersion = JSON.stringify(packageJson.version)
 const deps = packageJson.dependencies
 const webpack = require('webpack')
@@ -217,27 +217,25 @@ const commonPlugins = [
   }),
   new MonacoWebpackPlugin({
     // available options are documented at https://github.com/Microsoft/monaco-editor-webpack-plugin#options
-    languages: appConfigJson.monacoLanguages
+    languages: ['yaml', 'shell', 'powershell']
   }),
   new GenerateStringTypesPlugin(),
   new ModuleFederationPlugin({
-    name: appConfigJson.id,
+    ...federationConfigJson,
     filename: 'remoteEntry.js',
-    remotes: {},
-    exposes: appConfigJson.moduleFederationExports,
     shared: {
       ...deps,
       react: {
-        singleton: true,
-        requiredVersion: deps.react
+        singleton: true
+        // requiredVersion: deps.react
       },
       'react-dom': {
-        singleton: true,
-        requiredVersion: deps['react-dom']
+        singleton: true
+        // requiredVersion: deps['react-dom']
       },
       'react-router-dom': {
-        singleton: true,
-        requiredVersion: deps['react-router-dom']
+        singleton: true
+        // requiredVersion: deps['react-router-dom']
       }
     }
   })
