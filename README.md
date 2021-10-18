@@ -1,6 +1,3 @@
 # UI Template
 
-Template for Harness UI micro-frontend application.
-
-## Introduction
-
+Template for Harness UI micro-frontend applications.
