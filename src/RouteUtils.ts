@@ -1,7 +1,14 @@
-let basePath = ''
+import { generatePath } from 'react-router-dom'
 
-export const setBasePath = (_basePath: string): void => {
+let basePath = ''
+let baseURL = ''
+
+export const setRouteBase = (_basePath: string, _baseURL: string): void => {
   basePath = _basePath
+  baseURL = _baseURL
 }
 
-export const withBasePath = (path: string): string => `${basePath}${path}`
+export const withRouteBasePath = (path: string): string => `${basePath}${path}`
+
+export const withRouteBaseURL = (path: string, params?: Record<string, string | number | boolean>): string =>
+  generatePath(`${baseURL}${path}`, params)

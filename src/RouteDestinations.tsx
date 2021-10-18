@@ -4,23 +4,27 @@ import type { AppProps } from 'AppProps'
 import { SignInPage } from 'pages/signin/SignInPage'
 import { NotFoundPage } from 'pages/404/NotFoundPage'
 import { TestPage } from 'pages/test/TestPage'
-import { setBasePath } from './RouteUtils'
-import routes from './RouteDefinitions'
+import { setRouteBase, withRouteBasePath } from './RouteUtils'
+import { RoutePath } from './RouteDefinitions'
 
-export const RouteDestinations: React.FC<Pick<AppProps, 'standalone' | 'basePath'>> = ({
+export const RouteDestinations: React.FC<Pick<AppProps, 'standalone' | 'basePath' | 'baseURL' | 'params'>> = ({
   standalone,
-  basePath = ''
+  basePath = '',
+  baseURL = ''
 }) => {
-  setBasePath(basePath)
+  setRouteBase(basePath, baseURL)
 
   const Routes: React.FC = () => (
     <Switch>
       {standalone && (
-        <Route path={routes.toSignIn()}>
+        <Route path={RoutePath.SIGNIN}>
           <SignInPage />
         </Route>
       )}
-      <Route path={routes.toPolicies()}>
+      <Route path={withRouteBasePath(RoutePath.POLICY_DASHBOARD)}>
+        <h1>POLICY_DASHBOARD</h1>
+      </Route>
+      <Route path={withRouteBasePath(RoutePath.POLICY_LISTING)}>
         <TestPage />
       </Route>
       <Route path="/">
