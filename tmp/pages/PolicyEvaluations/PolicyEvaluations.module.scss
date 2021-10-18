@@ -1,0 +1,44 @@
+.table {
+  padding: var(--spacing-large) var(--spacing-xxlarge);
+  padding-bottom: var(--spacing-none);
+}
+
+.pill {
+  padding: var(--spacing-2) var(--spacing-3);
+  color: var(--primary-6);
+  background: var(--primary-1);
+  align-items: center;
+  font-weight: 500;
+  border-radius: 4px;
+  margin-right: var(--spacing-3);
+}
+
+.pillDanger {
+  color: var(--red-900);
+  background: var(--red-50);
+  padding: var(--spacing-2);
+  border-radius: 4px;
+  display: flex;
+  font-size: 10px;
+  font-weight: 600;
+  justify-content: center;
+  align-items: center;
+  path {
+    color: var(--red-900);
+  }
+}
+
+.pillSuccess {
+  color: var(--green-800);
+  background: var(--green-50);
+  padding: var(--spacing-2);
+  border-radius: 4px;
+  display: flex;
+  font-size: 10px;
+  font-weight: 600;
+  justify-content: center;
+  align-items: center;
+  path {
+    color: var(--green-800);
+  }
+}

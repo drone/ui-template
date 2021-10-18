@@ -1,0 +1,35 @@
+.table {
+  padding: var(--spacing-large) var(--spacing-xxlarge);
+  padding-bottom: var(--spacing-none);
+}
+.closeIcon {
+  position: absolute;
+  right: var(--spacing-large);
+  top: var(--spacing-large);
+}
+
+.policyAssignment {
+  margin-bottom: var(--spacing-large) !important;
+  :global {
+    .FieldArray--container {
+      height: 400px;
+      overflow: scroll;
+      margin-bottom: var(--spacing-large) !important;
+    }
+  }
+}
+
+.containerProps {
+  table {
+    border: 0px !important;
+  }
+  :global {
+    .FieldArray--noData {
+      border: 0px !important;
+    }
+    .Select--menuItem {
+      height: unset !important;
+      padding: var(--spacing-small) !important;
+    }
+  }
+}

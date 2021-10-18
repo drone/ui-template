@@ -5,7 +5,7 @@ import { languageLoader } from './framework/strings/languageLoader'
 import type { LanguageRecord } from './framework/strings/languageLoader'
 import { StringsContextProvider } from './framework/strings/StringsContextProvider'
 import type { AppProps } from './AppProps'
-import { RouteDefinitions } from './Routes'
+import { RouteDestinations } from './RouteDestinations'
 import { buildResfulReactRequestOptions, getAPIToken, handle401 } from './AppUtils'
 import './App.scss'
 
@@ -41,7 +41,7 @@ const App: React.FC<AppProps> = props => {
         }
       }}>
       <StringsContextProvider initialStrings={strings}>
-        <RouteDefinitions standalone={standalone} basePath={basePath} />
+        <RouteDestinations standalone={standalone} basePath={basePath} />
       </StringsContextProvider>
     </RestfulProvider>
   ) : null
