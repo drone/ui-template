@@ -22,8 +22,14 @@ export interface AppProps {
   /** Flag to tell if App is mounted as a standalone app */
   standalone: boolean
 
-  /** Base path from parent app when being embedded */
+  /** Base path from parent app when being embedded (i.e "/account/:accountId/settings/governance") */
   basePath?: string
+
+  /** Base URL from parent app when being embedded (i.e "/account/-QfWogZ0QKutV6T2bqdCZQ/settings/governance") */
+  baseURL?: string
+
+  /** Base URL params from parent app when being embedded */
+  params?: Record<string, string>
 
   /** Language to use in the app, default is 'en' */
   lang?: LangLocale
