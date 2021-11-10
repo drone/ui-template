@@ -18,5 +18,10 @@
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "eslint.options": { "rulePaths": ["./scripts/eslint-rules"] }
+  "eslint.options": {
+    "rulePaths": ["./scripts/eslint-rules"]
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

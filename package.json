@@ -22,10 +22,11 @@
     "typecheck": "tsc",
     "clean": "rm -rf dist && rm -rf node_modules/.cache",
     "services": "npm-run-all services:*",
+    "services:pm": "restful-react import --config restful-react.config.js pm",
     "services:petstore": "restful-react import --config restful-react.config.js petstore",
     "postservices": "prettier --write src/services/**/*.tsx",
-    "build": "yarn clean; webpack --mode production",
-    "coverage": "yarn test --coverage",
+    "build": "pnpm clean; webpack --mode production",
+    "coverage": "pnpm test --coverage",
     "setup-github-registry": "sh scripts/setup-github-registry.sh",
     "strings": "npm-run-all strings:*",
     "strings:genTypes": "node scripts/strings/generateTypesCli.mjs",
@@ -42,7 +43,7 @@
     "@types/react-monaco-editor": "^0.16.0",
     "@types/uuid": "^8.3.0",
     "@wings-software/ng-tooltip": "~1.30.26",
-    "@wings-software/uicore": "0.1.375",
+    "@wings-software/uicore": "0.1.436",
     "classnames": "^2.2.6",
     "clipboard-copy": "^3.1.0",
     "closest": "^0.0.1",
@@ -51,6 +52,7 @@
     "cronstrue": "^1.114.0",
     "formik": "1.5.8",
     "lodash-es": "^4.17.15",
+    "marked": "^4.0.0",
     "masonry-layout": "^4.2.2",
     "moment": "^2.25.3",
     "moment-range": "^4.0.2",
@@ -58,6 +60,8 @@
     "monaco-editor-core": "0.15.5",
     "monaco-languages": "1.6.0",
     "monaco-plugin-helpers": "^1.0.2",
+    "normalize.css": "^8.0.1",
+    "qs": "^6.10.1",
     "react": "^17.0.2",
     "react-beautiful-dnd": "^13.0.0",
     "react-contenteditable": "^3.3.5",
@@ -82,10 +86,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.13.15",
-    "@graphql-codegen/cli": "^1.21.2",
-    "@graphql-codegen/typescript": "^1.21.1",
-    "@graphql-codegen/typescript-operations": "^1.17.15",
-    "@graphql-codegen/typescript-urql": "^2.0.6",
     "@testing-library/react": "^10.0.3",
     "@testing-library/react-hooks": "5",
     "@testing-library/user-event": "^10.3.1",
@@ -107,7 +107,6 @@
     "@types/yup": "^0.29.0",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
-    "@urql/devtools": "^2.0.3",
     "@wings-software/css-types-loader": "^2.1.0",
     "@wings-software/jarvis": "0.11.0",
     "assert": "^2.0.0",
@@ -184,7 +183,7 @@
       "prettier --check"
     ],
     "strings.*.yaml": [
-      "yarn strings:check"
+      "pnpm strings:check"
     ],
     "webpack.devServerProxy.config.js": [
       "exit 1"

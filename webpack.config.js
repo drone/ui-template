@@ -38,27 +38,25 @@ const config = {
     publicPath: 'auto'
   },
   devtool: DEV ? 'cheap-module-source-map' : 'hidden-source-map',
-  devServer: {
-    contentBase: false,
-    port: 8080,
-    https: {
-      key: fs.readFileSync(path.resolve(__dirname, './certificates/localhost-key.pem')),
-      cert: fs.readFileSync(path.resolve(__dirname, './certificates/localhost.pem'))
-    },
-    proxy: Object.fromEntries(
-      Object.entries(devServerProxyConfig).map(([key, value]) => [
-        key,
-        Object.assign({ logLevel: 'debug', secure: false, changeOrigin: true }, value)
-      ])
-    ),
-    stats: {
-      children: false,
-      maxModules: 0,
-      chunks: false,
-      assets: false,
-      modules: false
-    }
-  },
+  devServer: DEV
+    ? {
+        contentBase: false,
+        port: 8080,
+        proxy: Object.fromEntries(
+          Object.entries(devServerProxyConfig).map(([key, value]) => [
+            key,
+            Object.assign({ logLevel: 'debug', secure: false, changeOrigin: true }, value)
+          ])
+        ),
+        stats: {
+          children: false,
+          maxModules: 0,
+          chunks: false,
+          assets: false,
+          modules: false
+        }
+      }
+    : undefined,
   stats: {
     modules: false,
     children: false
