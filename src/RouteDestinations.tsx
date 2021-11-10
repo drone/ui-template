@@ -4,10 +4,10 @@ import type { AppProps } from 'AppProps'
 import { SignInPage } from 'pages/signin/SignInPage'
 import { NotFoundPage } from 'pages/404/NotFoundPage'
 import { TestPage } from 'pages/test/TestPage'
-import { setRouteBase, withRouteBasePath } from './RouteUtils'
+import { setRouteBase, getRoutePath } from './RouteUtils'
 import { RoutePath } from './RouteDefinitions'
 
-export const RouteDestinations: React.FC<Pick<AppProps, 'standalone' | 'basePath' | 'baseURL' | 'params'>> = ({
+export const RouteDestinations: React.FC<Pick<AppProps, 'standalone' | 'basePath' | 'baseURL'>> = ({
   standalone,
   basePath = '',
   baseURL = ''
@@ -21,10 +21,10 @@ export const RouteDestinations: React.FC<Pick<AppProps, 'standalone' | 'basePath
           <SignInPage />
         </Route>
       )}
-      <Route path={withRouteBasePath(RoutePath.POLICY_DASHBOARD)}>
+      <Route path={getRoutePath(RoutePath.POLICY_DASHBOARD)}>
         <h1>POLICY_DASHBOARD</h1>
       </Route>
-      <Route path={withRouteBasePath(RoutePath.POLICY_LISTING)}>
+      <Route path={getRoutePath(RoutePath.POLICY_LISTING)}>
         <TestPage />
       </Route>
       <Route path="/">

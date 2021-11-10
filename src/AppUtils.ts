@@ -1,3 +1,5 @@
+const API_TOKEN_KEY = 'HARNESS_OPA_GOVERNANCE_API_TOKEN'
+
 /**
  * Get API token to use in Restful React calls.
  *
@@ -7,10 +9,12 @@
  *
  * @returns API token.
  */
-export function getAPIToken(): string | undefined {
-  // eslint-disable-next-line no-console
-  console.error('TODO: Implement getAPIToken()...')
-  return 'TO BE IMPLEMENTED'
+export function getAPIToken(): string {
+  return localStorage.getItem(API_TOKEN_KEY) || ''
+}
+
+export function setAPIToken(token: string): void {
+  localStorage.setItem(API_TOKEN_KEY, token)
 }
 
 /**
