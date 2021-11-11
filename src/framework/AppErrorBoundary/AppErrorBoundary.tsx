@@ -32,8 +32,7 @@ class AppErrorBoundary extends React.Component<unknown, AppErrorBoundaryState> {
               onClick={e => {
                 e.preventDefault()
                 window.location.reload()
-              }}
-            >
+              }}>
               {i18n.refresh}
             </a>
             {i18n.continue}

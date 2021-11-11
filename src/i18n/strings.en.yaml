@@ -8,6 +8,8 @@ finish: Finish
 delete: Delete
 apply: Apply
 cancel: Cancel
+continue: Continue
+type: Type
 name: Name
 edit: Edit
 action: Action

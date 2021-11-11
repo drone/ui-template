@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, waitFor, getByText, fireEvent } from '@testing-library/react'
-import { TestWrapper } from '@common/utils/testUtils'
+import { TestWrapper } from 'utils/test/testUtils'
 import { EditPolicyMetadataModalButton } from '../EditPolicyMetadataModalButton'
 
 describe('EditPolicyMetadataModalButton', () => {
@@ -16,8 +16,7 @@ describe('EditPolicyMetadataModalButton', () => {
     const Component = (
       <TestWrapper
         path="/account/:accountId/cf/orgs/:orgIdentifier/projects/:projectIdentifier/onboarding/detail"
-        pathParams={params}
-      >
+        pathParams={params}>
         <EditPolicyMetadataModalButton
           isEdit={false}
           shouldOpenModal={false}
@@ -55,8 +54,7 @@ describe('EditPolicyMetadataModalButton', () => {
     const Component = (
       <TestWrapper
         path="/account/:accountId/cf/orgs/:orgIdentifier/projects/:projectIdentifier/onboarding/detail"
-        pathParams={params}
-      >
+        pathParams={params}>
         <EditPolicyMetadataModalButton
           isEdit={true}
           shouldOpenModal={true}

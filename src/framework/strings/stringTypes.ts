@@ -32,6 +32,7 @@ export interface StringsMap {
   'common.policy.table.createdAt': string
   'common.policy.table.lastModified': string
   'common.policy.table.name': string
+  continue: string
   delete: string
   description: string
   descriptionPlaceholder: string
@@ -89,6 +90,7 @@ export interface StringsMap {
   status: string
   success: string
   tagsLabel: string
+  type: string
   'validation.identifierIsRequired': string
   'validation.identifierRequired': string
   'validation.nameRequired': string

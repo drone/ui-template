@@ -19,7 +19,7 @@ export const TestPage: React.FC = () => {
 
   return (
     <>
-      <h1>Hello {getString('harness')}</h1>
+      <h1>{getString('overview')}</h1>
       <div className={css.container}>This is a test page</div>
 
       {data && (

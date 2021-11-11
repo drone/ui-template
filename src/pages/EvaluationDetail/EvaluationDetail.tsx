@@ -7,7 +7,7 @@ import { getErrorMessage, PipleLineEvaluationEvent, QUERY_PARAM_VALUE_ALL } from
 import { EvaluationView } from 'views/EvaluationView/EvaluationView'
 import type { StringsContextValue } from 'framework/strings/StringsContext'
 import { useStrings } from 'framework/strings'
-import type { GovernancePathProps } from '@common/interfaces/RouteInterfaces'
+import type { GovernancePathProps } from 'RouteUtils'
 
 const evaluationNameFromAction = (getString: StringsContextValue['getString'], action?: string): string => {
   return getString?.(action === PipleLineEvaluationEvent.ON_RUN ? 'governance.onRun' : 'governance.onSave') || ''

@@ -66,7 +66,7 @@ export const SelectPolicyModalButton: React.FC<SelectPolicyModalButtonProps & Bu
           )
         },
         {
-          Header: getString('typeLabel'),
+          Header: getString('type'),
           accessor: item => item.type,
           width: '20%',
           Cell: ({ row }: CellProps<Example>) => (

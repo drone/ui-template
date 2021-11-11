@@ -44,6 +44,7 @@ declare module '*.gql' {
 
 declare interface Window {
   apiUrl: string
+  bugsnagClient?: any
 }
 
 declare const monaco: any

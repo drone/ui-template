@@ -21,7 +21,7 @@ import { EvaluationStatusLabel } from '../../components/EvaluationStatus/Evaluat
 import css from './EvaluationView.module.scss'
 
 export interface EvaluationViewProps {
-  accountId: string
+  accountId?: string
   module?: Module
 
   // data from Pipeline execution's governanceMetadata and from OPA execution API is

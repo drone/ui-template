@@ -25,8 +25,8 @@
     "services:pm": "restful-react import --config restful-react.config.js pm",
     "services:petstore": "restful-react import --config restful-react.config.js petstore",
     "postservices": "prettier --write src/services/**/*.tsx",
-    "build": "pnpm clean; webpack --mode production",
-    "coverage": "pnpm test --coverage",
+    "build": "yarn clean; webpack --mode production",
+    "coverage": "yarn test --coverage",
     "setup-github-registry": "sh scripts/setup-github-registry.sh",
     "strings": "npm-run-all strings:*",
     "strings:genTypes": "node scripts/strings/generateTypesCli.mjs",
@@ -185,7 +185,7 @@
       "prettier --check"
     ],
     "strings.*.yaml": [
-      "pnpm strings:check"
+      "yarn strings:check"
     ],
     "webpack.devServerProxy.config.js": [
       "exit 1"

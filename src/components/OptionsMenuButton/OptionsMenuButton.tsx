@@ -1,6 +1,7 @@
 import React from 'react'
 import { Classes, Menu } from '@blueprintjs/core'
 import { Button, ButtonProps } from '@wings-software/uicore'
+import type { PopoverProps } from '@wings-software/uicore/dist/components/Popover/Popover'
 
 export const MenuDivider = '-' as const
 
@@ -13,14 +14,14 @@ export const OptionsMenuButton: React.FC<OptionsMenuButtonProps> = ({ items, ...
     <Button
       minimal
       icon="Options"
-      tooltipProps={{ isDark: true, interactionKind: 'click', hasBackdrop: true }}
+      tooltipProps={{ isDark: true, interactionKind: 'click', hasBackdrop: true } as PopoverProps}
       tooltip={
         <Menu style={{ minWidth: 'unset' }}>
           {items.map(
             (item, index) =>
               ((item as string) === MenuDivider && <Menu.Divider key={index} />) || (
                 <Menu.Item
-                  key={(item as React.ComponentProps<typeof Menu.Item>).text as string}
+                  key={(item as React.ComponentProps<typeof Menu.Item>)?.text as string}
                   className={Classes.POPOVER_DISMISS}
                   {...item}
                 />
