@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { RestfulProvider } from 'restful-react'
-import { ModalProvider } from '@wings-software/uicore'
+import { ModalProvider, TooltipContextProvider } from '@wings-software/uicore'
 import { FocusStyleManager } from '@blueprintjs/core'
+import AppErrorBoundary from 'framework/AppErrorBoundary/AppErrorBoundary'
 import { languageLoader } from './framework/strings/languageLoader'
 import type { LanguageRecord } from './framework/strings/languageLoader'
 import { StringsContextProvider } from './framework/strings/StringsContextProvider'
@@ -9,7 +10,6 @@ import type { AppProps } from './AppProps'
 import { RouteDestinations } from './RouteDestinations'
 import { buildResfulReactRequestOptions, getAPIToken, handle401 } from './AppUtils'
 import './App.scss'
-import AppErrorBoundary from 'framework/AppErrorBoundary/AppErrorBoundary'
 
 FocusStyleManager.onlyShowFocusOnTabs()
 
@@ -44,9 +44,11 @@ const App: React.FC<AppProps> = props => {
           }
         }}>
         <StringsContextProvider initialStrings={strings}>
-          <ModalProvider>
-            <RouteDestinations standalone={standalone} basePath={basePath} baseURL={baseURL} />
-          </ModalProvider>
+          <TooltipContextProvider initialTooltipDictionary={{}}>
+            <ModalProvider>
+              <RouteDestinations standalone={standalone} basePath={basePath} baseURL={baseURL} />
+            </ModalProvider>
+          </TooltipContextProvider>
         </StringsContextProvider>
       </RestfulProvider>
     </AppErrorBoundary>

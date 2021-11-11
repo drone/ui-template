@@ -40,21 +40,13 @@ const config = {
   devtool: DEV ? 'cheap-module-source-map' : 'hidden-source-map',
   devServer: DEV
     ? {
-        contentBase: false,
         port: 8080,
         proxy: Object.fromEntries(
           Object.entries(devServerProxyConfig).map(([key, value]) => [
             key,
             Object.assign({ logLevel: 'debug', secure: false, changeOrigin: true }, value)
           ])
-        ),
-        stats: {
-          children: false,
-          maxModules: 0,
-          chunks: false,
-          assets: false,
-          modules: false
-        }
+        )
       }
     : undefined,
   stats: {
@@ -215,7 +207,7 @@ const commonPlugins = [
   }),
   new MonacoWebpackPlugin({
     // available options are documented at https://github.com/Microsoft/monaco-editor-webpack-plugin#options
-    languages: ['yaml', 'shell', 'powershell']
+    languages: ['yaml', 'json']
   }),
   new GenerateStringTypesPlugin(),
   new ModuleFederationPlugin({
