@@ -46,7 +46,10 @@ const config = {
             key,
             Object.assign({ logLevel: 'debug', secure: false, changeOrigin: true }, value)
           ])
-        )
+        ),
+        client: {
+          overlay: false
+        }
       }
     : undefined,
   stats: {

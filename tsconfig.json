@@ -20,8 +20,7 @@
     "resolveJsonModule": true,
     "importsNotUsedAsValues": "error",
     "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "lib": ["es5", "es6", "dom", "dom.iterable"]
+    "noUnusedParameters": true
   },
   "include": ["src/"],
   "exclude": ["node_modules"]
