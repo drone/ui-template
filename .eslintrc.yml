@@ -72,6 +72,7 @@ rules:
   '@typescript-eslint/member-delimiter-style': 0
   '@typescript-eslint/no-shadow': 2
   '@typescript-eslint/no-extra-semi': 0
+  '@typescript-eslint/explicit-module-boundary-types': 0
 
   #import
   import/order:

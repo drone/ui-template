@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { RestfulProvider } from 'restful-react'
+import { ModalProvider } from '@wings-software/uicore'
 import { FocusStyleManager } from '@blueprintjs/core'
 import { languageLoader } from './framework/strings/languageLoader'
 import type { LanguageRecord } from './framework/strings/languageLoader'
@@ -8,6 +9,7 @@ import type { AppProps } from './AppProps'
 import { RouteDestinations } from './RouteDestinations'
 import { buildResfulReactRequestOptions, getAPIToken, handle401 } from './AppUtils'
 import './App.scss'
+import AppErrorBoundary from 'framework/AppErrorBoundary/AppErrorBoundary'
 
 FocusStyleManager.onlyShowFocusOnTabs()
 
@@ -30,20 +32,24 @@ const App: React.FC<AppProps> = props => {
   }, [apiToken])
 
   return strings ? (
-    <RestfulProvider
-      base="/"
-      requestOptions={getRequestOptions}
-      queryParams={{}} // TODO: fill in queryParams if needed
-      queryParamStringifyOptions={{ skipNulls: true }}
-      onResponse={response => {
-        if (!response.ok && response.status === 401) {
-          on401()
-        }
-      }}>
-      <StringsContextProvider initialStrings={strings}>
-        <RouteDestinations standalone={standalone} basePath={basePath} baseURL={baseURL} />
-      </StringsContextProvider>
-    </RestfulProvider>
+    <AppErrorBoundary>
+      <RestfulProvider
+        base="/"
+        requestOptions={getRequestOptions}
+        queryParams={{}} // TODO: fill in queryParams if needed
+        queryParamStringifyOptions={{ skipNulls: true }}
+        onResponse={response => {
+          if (!response.ok && response.status === 401) {
+            on401()
+          }
+        }}>
+        <StringsContextProvider initialStrings={strings}>
+          <ModalProvider>
+            <RouteDestinations standalone={standalone} basePath={basePath} baseURL={baseURL} />
+          </ModalProvider>
+        </StringsContextProvider>
+      </RestfulProvider>
+    </AppErrorBoundary>
   ) : null
 }
 

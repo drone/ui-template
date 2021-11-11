@@ -1,0 +1,41 @@
+.main {
+  width: 100%;
+  height: 100%;
+}
+
+.policySetItem {
+  background: var(--white);
+  box-shadow: 0px 0px 1px rgba(40, 41, 61, 0.04), 0px 2px 4px rgba(96, 97, 112, 0.16);
+  border-radius: 4px;
+  padding-left: var(--spacing-medium) !important;
+
+  .firstRow {
+    border-bottom: 1px solid var(--grey-200);
+    padding-bottom: var(--spacing-medium) !important;
+  }
+
+  .status,
+  .details {
+    width: 200px;
+    align-items: center;
+    display: flex;
+  }
+
+  .details {
+    width: 80px;
+  }
+}
+
+.policySetName {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.warningStatus {
+  background-color: var(--warning) !important;
+}
+
+.columHeader {
+  cursor: pointer;
+}

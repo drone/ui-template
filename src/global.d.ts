@@ -49,3 +49,17 @@ declare interface Window {
 declare const monaco: any
 
 declare module '*.scss'
+
+type RequireField<T, K extends keyof T> = T & Required<Pick<T, K>>
+
+type Module =
+  | 'ci'
+  | 'cd'
+  | 'cf'
+  | 'cv'
+  | 'ce'
+  | ':module(ci)'
+  | ':module(cd)'
+  | ':module(cf)'
+  | ':module'
+  | ':module(cv)'

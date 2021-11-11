@@ -1,0 +1,60 @@
+.pageBody {
+  height: calc(100vh - 73px) !important;
+}
+.table {
+  padding: var(--spacing-large) var(--spacing-xxlarge);
+  padding-bottom: var(--spacing-none);
+  [class*='Table-module_body'] {
+    overflow-y: scroll;
+    height: calc(100% - 115px);
+  }
+}
+
+.pill {
+  padding: var(--spacing-2) var(--spacing-3);
+  color: var(--primary-6);
+  background: var(--primary-1);
+  align-items: center;
+  font-weight: 500;
+  border-radius: 4px;
+  margin-right: var(--spacing-4);
+  margin-bottom: var(--spacing-4);
+  float: left;
+}
+
+.pillDanger {
+  color: var(--red-900);
+  background: var(--red-50);
+  padding: var(--spacing-2);
+  border-radius: 4px;
+  display: flex;
+  font-size: 10px;
+  font-weight: 600;
+  justify-content: center;
+  align-items: center;
+  path {
+    color: var(--red-900);
+  }
+}
+
+.pillSuccess {
+  color: var(--green-800);
+  background: var(--green-50);
+  padding: var(--spacing-2);
+  border-radius: 4px;
+  display: flex;
+  font-size: 10px;
+  font-weight: 600;
+  justify-content: center;
+  align-items: center;
+  path {
+    color: var(--green-800);
+  }
+}
+
+.popoverSets {
+  width: 400px !important;
+  overflow: auto;
+  background: var(--white);
+  height: 300px !important;
+}

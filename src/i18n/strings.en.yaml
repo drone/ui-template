@@ -1,2 +1,101 @@
-harness: Harness
-appName: Harness OPA
+failed: Failed
+status: Status
+success: Success
+details: Details
+overview: Overview
+back: Back
+finish: Finish
+delete: Delete
+apply: Apply
+cancel: Cancel
+name: Name
+edit: Edit
+action: Action
+executionsText: Executions
+outputLabel: Output
+description: Description
+optionalField: '{{name}} (optional)'
+descriptionPlaceholder: Enter Description
+tagsLabel: Tags
+yes: Yes
+no: No
+common:
+  namePlaceholder: Enter Name
+  policies: 'Policies'
+  policy:
+    policysets: Policy Sets
+    newPolicy: New Policy
+    evaluations: Evaluation
+    policySearch: Search Policy by name
+    noPolicy: You have no Policy. Click on the button below to create a new one.
+    noPolicyResult: No policy found
+    noPolicyEvalResult: No policy Evaluations found
+    noSelectInput: Select appropriate options
+    table:
+      name: Policy
+      lastModified: Last Modified
+      createdAt: Created At
+  policiesSets:
+    newPolicyset: New Policy Set
+    noPolicySets: No Policy Sets evaluated
+    evaluationCriteria: Policy evaluation criteria
+    policySetSearch: Search Policy Set by name
+    noPolicySet: You have no Policy Set. Click on the button below to create a new one.
+    noPolicySetResult: No policy sets found
+    stepOne:
+      validName: '{{$.validation.nameRequired}}'
+      validId: '{{$.validation.identifierRequired}}'
+      validIdRegex: '{{$.common.validation.formatMustBeAlphanumeric}}'
+    table:
+      name: Policy Set
+      enforced: Enforced
+      entityType: Entity Type {{name}}
+governance:
+  editPolicy: Edit Policy
+  formatInput: Format Input
+  selectInput: Select Input
+  clearOutput: Clear Output
+  inputFailedEvaluation: Input failed Policy Evaluation
+  inputSuccededEvaluation: Input succeeded Policy Evaluation
+  warning: warning
+  evaluatedTime: 'Evaluated {{time}}'
+  failureHeading: Pipeline execution could not proceed due to the Policy Evaluation failures.
+  warningHeading: Pipeline execution has Policy Evaluation warnings.
+  failureHeadingEvaluationDetail: Policy Evaluation failed.
+  successHeading: All policies are passed.
+  policySets: 'Policy Sets ({{count}})'
+  evaluations: Evaluations {{count}}
+  policySetName: 'Policy Set: {{name}}'
+  emptyPolicySet: This Policy Set does not have any policies attached to it.
+  failureModalTitle: Policy Set Evaluations
+  policySetsApplied: '{{pipelineName}}: Policy Sets applied'
+  warn: warning {{count}}
+  event: Pipeline Event
+  evaluatedOn: Evaluated On
+  onRun: On Run
+  onSave: On Save
+  policyName: 'Policy Name: {{name}}'
+  policyIdentifier: 'Policy Identifier: {{policyIdentifier}}'
+  deleteTitle: Delete Policy
+  deleteConfirmation: Are you sure you want to delete Policy "{{name}}"? This action cannot be undone.
+  deleteDone: Policy "{{name}}" deleted.
+  deletePolicySetTitle: Delete Policy Set
+  deletePolicySetConfirmation: Are you sure you want to delete Policy Set "{{name}}"? This action cannot be undone.
+  deletePolicySetDone: Policy Set "{{name}}" deleted.
+  selectSamplePolicy: Select a Policy example
+  evaluationEmpty: No Policy is linked for this evaluation.
+  noPolicySetForPipeline: No Policy Set applied for this pipeline.
+  noEvaluationForPipeline: No Evaluation found for this pipeline.
+  wizard:
+    policyToEval: Policy to Evaluate
+    fieldArray: Applies to Pipeline on the following events
+  policySetGroup: Policy Set Group
+  policySetGroupAccount: Account {{name}}
+  policySetGroupOrg: Organization {{name}}
+  policySetGroupProject: Project {{name}}
+validation:
+  identifierIsRequired: '{{$.validation.identifierRequired}}'
+  validIdRegex: Identifier must start with an letter or _ and can then be followed by alphanumerics, _, or $
+  thisIsARequiredField: This setting is required
+  nameRequired: Name is required
+  identifierRequired: Identifier is required

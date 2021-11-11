@@ -1,0 +1,53 @@
+.table {
+  width: 100%;
+  height: 400px;
+  overflow: auto;
+  div[class*='Table-module_body'] {
+    height: 250px;
+    overflow: scroll;
+  }
+}
+
+.radioSelector {
+  padding-left: 25px !important;
+}
+
+.pill {
+  padding: var(--spacing-2) var(--spacing-3);
+  color: var(--primary-6);
+  background: var(--primary-1);
+  align-items: center;
+  font-weight: 500;
+  border-radius: 4px;
+  margin-right: var(--spacing-3);
+}
+
+.pillDanger {
+  color: var(--red-900);
+  background: var(--red-50);
+  padding: var(--spacing-2);
+  border-radius: 4px;
+  display: flex;
+  font-size: 10px;
+  font-weight: 600;
+  justify-content: center;
+  align-items: center;
+  path {
+    color: var(--red-900);
+  }
+}
+
+.pillSuccess {
+  color: var(--green-800);
+  background: var(--green-50);
+  padding: var(--spacing-2);
+  border-radius: 4px;
+  display: flex;
+  font-size: 10px;
+  font-weight: 600;
+  justify-content: center;
+  align-items: center;
+  path {
+    color: var(--green-800);
+  }
+}

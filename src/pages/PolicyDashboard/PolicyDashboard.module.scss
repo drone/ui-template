@@ -1,0 +1,99 @@
+$header-height: 80px;
+
+.nContainer {
+  background: white !important;
+  border-radius: 4px;
+  box-shadow: 0px 0px 1px rgba(40, 41, 61, 0.04), 0px 2px 4px rgba(96, 97, 112, 0.16);
+  display: block;
+  padding: var(--spacing-5) !important;
+  display: flex;
+  justify-content: end;
+  position: relative;
+  flex-direction: column;
+  img {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    height: 28px;
+  }
+}
+
+.nText {
+  font-size: 40px !important;
+  color: var(--black) !important;
+  font-weight: 600 !important;
+}
+.oContainer {
+  margin-right: var(--spacing-7) !important;
+}
+.mContainer {
+  background: white !important;
+  min-width: 905px;
+  box-shadow: 0px 0px 1px rgba(40, 41, 61, 0.04), 0px 2px 4px rgba(96, 97, 112, 0.16);
+  border-radius: 4px;
+}
+.smContainer {
+  border-radius: 4px;
+  padding: var(--spacing-5) !important;
+  background: var(--grey-50) !important;
+  height: 75px;
+  width: 165px;
+}
+.smText {
+  font-size: 24px !important;
+  margin-top: var(--spacing-2) !important;
+  color: var(--black) !important;
+  font-weight: 500 !important;
+}
+
+.smTextRed {
+  font-size: 24px !important;
+  margin-top: var(--spacing-2) !important;
+  color: var(--red-900) !important;
+  font-weight: 500 !important;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+  .chartWrapper {
+    overflow: hidden;
+  }
+}
+
+.rangeSelectorHeader {
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  color: var(--grey-1000) !important;
+  letter-spacing: 0.5px !important;
+}
+
+.rangeSelector {
+  background: white;
+  border: 1px solid var(--grey-100);
+  border-radius: 4px;
+  padding: var(--spacing-2) var(--spacing-7);
+  :global {
+    .bp3-input {
+      border: none !important;
+      border-top: 2px solid transparent !important;
+      background: transparent;
+      text-align: right;
+      font-size: var(--ci-font-size-small) !important;
+    }
+    .bp3-menu {
+      min-width: 100px;
+      width: 150px;
+      font-size: var(--ci-font-size-small) !important;
+    }
+  }
+}
+
+.titleAndFilter {
+  display: flex;
+  justify-content: space-between;
+  background: white;
+  border: 1px solid var(--grey-100);
+  border-radius: 4px;
+  padding: var(--spacing-2) var(--spacing-7);
+}

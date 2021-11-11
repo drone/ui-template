@@ -1,14 +1,7 @@
 {
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
-  "schemes": [
-    "http",
-    "https"
-  ],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "schemes": ["http", "https"],
   "swagger": "2.0",
   "info": {
     "title": "defines the swagger specification.",
@@ -19,9 +12,7 @@
     "/dashboard": {
       "get": {
         "description": "Get the dashboard metrics",
-        "tags": [
-          "dashboard"
-        ],
+        "tags": ["dashboard"],
         "operationId": "getdashboard",
         "responses": {
           "200": {
@@ -33,9 +24,7 @@
     "/evaluate": {
       "post": {
         "description": "Input must be a JSON structure. It must not be a string containing \"double-encoded\" JSON.",
-        "tags": [
-          "evaluate"
-        ],
+        "tags": ["evaluate"],
         "summary": "Evaluate arbitrary rego policies",
         "operationId": "evaluateRaw",
         "parameters": [
@@ -57,9 +46,7 @@
     "/evaluate-by-ids": {
       "post": {
         "description": "Evaluate policy sets by policy set ids",
-        "tags": [
-          "evaluate"
-        ],
+        "tags": ["evaluate"],
         "operationId": "evaluateByIds",
         "parameters": [
           {
@@ -99,9 +86,7 @@
     "/evaluate-by-type": {
       "post": {
         "description": "Evaluate policy sets by policy set type",
-        "tags": [
-          "evaluate"
-        ],
+        "tags": ["evaluate"],
         "operationId": "evaluateByType",
         "parameters": [
           {
@@ -163,9 +148,7 @@
     "/evaluations": {
       "get": {
         "description": "Get the list of all evaluations",
-        "tags": [
-          "evaluation"
-        ],
+        "tags": ["evaluation"],
         "operationId": "getEvaluationList",
         "parameters": [
           {
@@ -198,13 +181,6 @@
           },
           {
             "type": "string",
-            "example": "5",
-            "description": "the page requested page number",
-            "name": "page",
-            "in": "query"
-          },
-          {
-            "type": "string",
             "example": "150",
             "description": "the id of the last returned record",
             "name": "last_seen",
@@ -221,9 +197,7 @@
     "/evaluations/{evaluation}": {
       "get": {
         "description": "Get the evaluation by ID",
-        "tags": [
-          "evaluation"
-        ],
+        "tags": ["evaluation"],
         "operationId": "getEvaluation",
         "parameters": [
           {
@@ -256,9 +230,7 @@
       },
       "delete": {
         "description": "Delete the evaluation by ID",
-        "tags": [
-          "evaluation"
-        ],
+        "tags": ["evaluation"],
         "operationId": "deleteEvaluation",
         "parameters": [
           {
@@ -293,9 +265,7 @@
     "/examples": {
       "get": {
         "description": "Get the example rego and input",
-        "tags": [
-          "examples"
-        ],
+        "tags": ["examples"],
         "operationId": "getexamples",
         "responses": {
           "200": {
@@ -307,9 +277,7 @@
     "/login": {
       "post": {
         "description": "Return system health information",
-        "tags": [
-          "login"
-        ],
+        "tags": ["login"],
         "operationId": "login",
         "parameters": [
           {
@@ -333,9 +301,7 @@
     "/policies": {
       "get": {
         "description": "Get the list of all policies",
-        "tags": [
-          "policy"
-        ],
+        "tags": ["policy"],
         "operationId": "getPolicyList",
         "parameters": [
           {
@@ -366,12 +332,6 @@
             "description": "the page requested page number",
             "name": "page",
             "in": "query"
-          },
-          {
-            "type": "boolean",
-            "description": "include results from the account/org/project hierarchy",
-            "name": "include_hierarchy",
-            "in": "query"
           }
         ],
         "responses": {
@@ -382,9 +342,7 @@
       },
       "post": {
         "description": "Create a new policy",
-        "tags": [
-          "policy"
-        ],
+        "tags": ["policy"],
         "operationId": "createPolicy",
         "parameters": [
           {
@@ -420,9 +378,7 @@
     "/policies/{policy}": {
       "get": {
         "description": "Get the policy by ID",
-        "tags": [
-          "policy"
-        ],
+        "tags": ["policy"],
         "operationId": "getPolicy",
         "parameters": [
           {
@@ -455,9 +411,7 @@
       },
       "delete": {
         "description": "Delete the policy by ID",
-        "tags": [
-          "policy"
-        ],
+        "tags": ["policy"],
         "operationId": "deletePolicy",
         "parameters": [
           {
@@ -490,9 +444,7 @@
       },
       "patch": {
         "description": "Update the policy by ID",
-        "tags": [
-          "policy"
-        ],
+        "tags": ["policy"],
         "operationId": "updatePolicy",
         "parameters": [
           {
@@ -534,9 +486,7 @@
     "/policysets": {
       "get": {
         "description": "Get the list of all policysets",
-        "tags": [
-          "policyset"
-        ],
+        "tags": ["policyset"],
         "operationId": "getPolicySetList",
         "parameters": [
           {
@@ -579,12 +529,6 @@
             "description": "The page requested page number",
             "name": "page",
             "in": "query"
-          },
-          {
-            "type": "boolean",
-            "description": "include results from the account/org/project hierarchy",
-            "name": "include_hierarchy",
-            "in": "query"
           }
         ],
         "responses": {
@@ -595,9 +539,7 @@
       },
       "post": {
         "description": "Create a new policyset",
-        "tags": [
-          "policyset"
-        ],
+        "tags": ["policyset"],
         "operationId": "createPolicySet",
         "parameters": [
           {
@@ -633,9 +575,7 @@
     "/policysets/{policyset}": {
       "get": {
         "description": "Get the policyset by ID",
-        "tags": [
-          "policyset"
-        ],
+        "tags": ["policyset"],
         "operationId": "getPolicySet",
         "parameters": [
           {
@@ -668,9 +608,7 @@
       },
       "delete": {
         "description": "Delete the policyset by ID",
-        "tags": [
-          "policyset"
-        ],
+        "tags": ["policyset"],
         "operationId": "deletePolicySet",
         "parameters": [
           {
@@ -703,9 +641,7 @@
       },
       "patch": {
         "description": "Update the policyset by ID",
-        "tags": [
-          "policyset"
-        ],
+        "tags": ["policyset"],
         "operationId": "updatePolicySet",
         "parameters": [
           {
@@ -747,9 +683,7 @@
     "/policysets/{policyset}/policy/{policy}": {
       "delete": {
         "description": "Delete the linked policy by ID",
-        "tags": [
-          "policyset"
-        ],
+        "tags": ["policyset"],
         "operationId": "deleteLinkedPolicy",
         "parameters": [
           {
@@ -788,9 +722,7 @@
       },
       "patch": {
         "description": "Add a new linked policy",
-        "tags": [
-          "policyset"
-        ],
+        "tags": ["policyset"],
         "operationId": "addLinkedPolicy",
         "parameters": [
           {
@@ -838,9 +770,7 @@
     "/register": {
       "post": {
         "description": "Return system version information",
-        "tags": [
-          "register"
-        ],
+        "tags": ["register"],
         "operationId": "register",
         "parameters": [
           {
@@ -864,9 +794,7 @@
     "/system/health": {
       "get": {
         "description": "Return system health information",
-        "tags": [
-          "health"
-        ],
+        "tags": ["health"],
         "operationId": "health",
         "responses": {
           "200": {
@@ -878,9 +806,7 @@
     "/system/version": {
       "get": {
         "description": "Return system version information",
-        "tags": [
-          "version"
-        ],
+        "tags": ["version"],
         "operationId": "version",
         "responses": {
           "200": {
@@ -891,9 +817,7 @@
     },
     "/user": {
       "get": {
-        "tags": [
-          "user"
-        ],
+        "tags": ["user"],
         "summary": "Get the authenticated user.",
         "operationId": "getCurrentUser",
         "responses": {
@@ -905,9 +829,7 @@
     },
     "/users": {
       "get": {
-        "tags": [
-          "user"
-        ],
+        "tags": ["user"],
         "summary": "Get the list of all registered users.",
         "operationId": "getUserList",
         "responses": {
@@ -917,9 +839,7 @@
         }
       },
       "post": {
-        "tags": [
-          "user"
-        ],
+        "tags": ["user"],
         "summary": "Create a new user.",
         "operationId": "createUser",
         "parameters": [
@@ -940,9 +860,7 @@
     },
     "/users/{user}": {
       "get": {
-        "tags": [
-          "user"
-        ],
+        "tags": ["user"],
         "summary": "Get the user with the matching email address.",
         "operationId": "getUser",
         "parameters": [
@@ -960,9 +878,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "user"
-        ],
+        "tags": ["user"],
         "summary": "Delete the user with the matching email address.",
         "operationId": "deleteUser",
         "parameters": [
@@ -980,9 +896,7 @@
         }
       },
       "patch": {
-        "tags": [
-          "user"
-        ],
+        "tags": ["user"],
         "summary": "Update the user with the matching email address.",
         "operationId": "updateUser",
         "parameters": [
@@ -1081,11 +995,7 @@
         },
         "status": {
           "type": "string",
-          "enum": [
-            "error",
-            "warning",
-            "pass"
-          ]
+          "enum": ["error", "warning", "pass"]
         }
       }
     },
@@ -1126,11 +1036,7 @@
         },
         "status": {
           "type": "string",
-          "enum": [
-            "error",
-            "warning",
-            "pass"
-          ]
+          "enum": ["error", "warning", "pass"]
         },
         "type": {
           "type": "string"
@@ -1158,11 +1064,7 @@
         },
         "status": {
           "type": "string",
-          "enum": [
-            "error",
-            "warning",
-            "pass"
-          ]
+          "enum": ["error", "warning", "pass"]
         }
       }
     },
@@ -1175,13 +1077,7 @@
     "Example": {
       "type": "object",
       "properties": {
-        "desc": {
-          "type": "string"
-        },
         "input": {
-          "type": "string"
-        },
-        "name": {
           "type": "string"
         },
         "rego": {
@@ -1219,10 +1115,7 @@
         },
         "severity": {
           "type": "string",
-          "enum": [
-            "error",
-            "warning"
-          ]
+          "enum": ["error", "warning"]
         },
         "updated": {
           "type": "integer",
@@ -1235,10 +1128,7 @@
       "properties": {
         "severity": {
           "type": "string",
-          "enum": [
-            "error",
-            "warning"
-          ]
+          "enum": ["error", "warning"]
         }
       }
     },
@@ -1499,9 +1389,6 @@
     "Version": {
       "type": "object",
       "properties": {
-        "commit": {
-          "type": "string"
-        },
         "version": {
           "type": "string"
         }
@@ -1627,9 +1514,7 @@
   },
   "security": [
     {
-      "Bearer": [
-        "[]"
-      ]
+      "Bearer": ["[]"]
     }
   ]
 }

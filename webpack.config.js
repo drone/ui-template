@@ -222,7 +222,7 @@ const commonPlugins = [
     ...federationConfigJson,
     filename: 'remoteEntry.js',
     shared: {
-      ...deps,
+      // ...deps,
       react: {
         singleton: true
         // requiredVersion: deps.react
