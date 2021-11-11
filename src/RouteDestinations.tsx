@@ -1,5 +1,6 @@
 import React from 'react'
 import { HashRouter, Route, Switch } from 'react-router-dom'
+import { ModalProvider } from '@wings-software/uicore'
 import type { AppProps } from 'AppProps'
 import { SignInPage } from 'pages/signin/SignInPage'
 import { NotFoundPage } from 'pages/404/NotFoundPage'
@@ -87,7 +88,9 @@ export const RouteDestinations: React.FC<Pick<AppProps, 'standalone' | 'basePath
 
   return standalone ? (
     <HashRouter>
-      <Destinations />
+      <ModalProvider>
+        <Destinations />
+      </ModalProvider>
     </HashRouter>
   ) : (
     <Destinations />

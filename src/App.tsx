@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { RestfulProvider } from 'restful-react'
-import { ModalProvider, TooltipContextProvider } from '@wings-software/uicore'
+import { TooltipContextProvider } from '@wings-software/uicore'
 import { FocusStyleManager } from '@blueprintjs/core'
 import AppErrorBoundary from 'framework/AppErrorBoundary/AppErrorBoundary'
 import { languageLoader } from './framework/strings/languageLoader'
@@ -45,9 +45,7 @@ const App: React.FC<AppProps> = props => {
         }}>
         <StringsContextProvider initialStrings={strings}>
           <TooltipContextProvider initialTooltipDictionary={{}}>
-            <ModalProvider>
-              <RouteDestinations standalone={standalone} basePath={basePath} baseURL={baseURL} />
-            </ModalProvider>
+            <RouteDestinations standalone={standalone} basePath={basePath} baseURL={baseURL} />
           </TooltipContextProvider>
         </StringsContextProvider>
       </RestfulProvider>

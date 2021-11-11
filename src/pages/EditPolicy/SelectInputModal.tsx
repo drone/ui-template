@@ -200,7 +200,7 @@ const SelectInputModal: React.FC<{ handleOnSelect: (data: string) => void }> = p
             }}>
             {() => {
               return (
-                <FormikForm>
+                <FormikForm className="foobar">
                   <Layout.Horizontal spacing="small">
                     <FormInput.Select
                       items={[{ label: 'Pipeline', value: 'pipeline' }]}
