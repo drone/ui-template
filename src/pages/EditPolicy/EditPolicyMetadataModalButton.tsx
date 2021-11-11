@@ -14,7 +14,6 @@ import * as yup from 'yup'
 import { Dialog } from '@blueprintjs/core'
 import { useStrings } from 'framework/strings'
 import { Description } from 'components/NameIdDescriptionTags/NameIdDescriptionTags'
-// import { useModalHook } from '../../components/Modal'
 import css from './EditPolicyMetadataModalButton.module.scss'
 
 export interface PolicyMetadata {
