@@ -30,7 +30,10 @@
     "setup-github-registry": "sh scripts/setup-github-registry.sh",
     "strings": "npm-run-all strings:*",
     "strings:genTypes": "node scripts/strings/generateTypesCli.mjs",
-    "fmt": "prettier --write \"./src/**/*.{ts,tsx,css,scss}\""
+    "fmt": "prettier --write \"./src/**/*.{ts,tsx,css,scss}\"",
+    "micro:watch": "nodemon --watch 'src/**/*' -e ts,tsx,html,scss,svg,yaml --exec 'npm-run-all' -- micro:build micro:serve",
+    "micro:build": "webpack --mode production",
+    "micro:serve": "serve ./dist -l 8283"
   },
   "dependencies": {
     "@blueprintjs/core": "3.26.1",
@@ -182,6 +185,7 @@
     "mini-css-extract-plugin": "^2.4.2",
     "monaco-editor-webpack-plugin": "1.8.*",
     "mustache": "^4.0.1",
+    "nodemon": "^2.0.15",
     "npm-run-all": "^4.1.5",
     "null-loader": "^4.0.1",
     "nyc": "^15.1.0",
@@ -192,6 +196,7 @@
     "react-test-renderer": "^17.0.2",
     "sass": "^1.32.8",
     "sass-loader": "^12.1.0",
+    "serve": "^13.0.2",
     "source-map-support": "^0.5.20",
     "style-loader": "^3.3.0",
     "ts-jest": "^26.5.5",
@@ -218,6 +223,19 @@
   },
   "engines": {
     "node": ">=14.16.0"
+  },
+  "nodemonConfig": {
+    "verbose": true,
+    "ignore": [
+      "dist/*",
+      "__tests__/*",
+      ".vscode/*",
+      "coverage/*",
+      "scripts/*",
+      "**/*.d.ts",
+      "src/framework/strings/stringTypes.ts"
+    ],
+    "delay": 2500
   },
   "lint-staged": {
     "*.{ts,tsx}": [
