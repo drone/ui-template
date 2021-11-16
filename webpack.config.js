@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires, no-console  */
 const packageJson = require('./package.json')
-const federationConfigJson = require('./ModuleFederation.config.json')
-const buildVersion = JSON.stringify(packageJson.version)
 const deps = packageJson.dependencies
+const { pick, omit, mapValues } = require('lodash')
+const buildVersion = JSON.stringify(packageJson.version)
 const webpack = require('webpack')
 const path = require('path')
 const fs = require('fs')
@@ -19,6 +19,21 @@ const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPl
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 const GenerateStringTypesPlugin = require('./scripts/webpack/GenerateStringTypesPlugin').GenerateStringTypesPlugin
 
+/**
+ * These packages must be stricly shared with exact versions
+ */
+const ExactSharedPackages = [
+  'formik',
+  'react',
+  'react-dom',
+  'react-router-dom',
+  '@wings-software/uicore',
+  '@blueprintjs/core',
+  '@blueprintjs/select',
+  '@blueprintjs/datetime',
+  'restful-react'
+]
+
 const DEV = process.env.NODE_ENV === 'development'
 const ON_PREM = `${process.env.ON_PREM}` === 'true'
 const CONTEXT = process.cwd()
@@ -28,19 +43,15 @@ const config = {
   target: 'web',
   mode: DEV ? 'development' : 'production',
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: DEV ? '/' : '',
+    publicPath: 'auto',
     filename: DEV ? 'static/[name].js' : 'static/[name].[contenthash:6].js',
     chunkFilename: DEV ? 'static/[name].[id].js' : 'static/[name].[id].[contenthash:6].js',
     pathinfo: false
   },
-  output: {
-    publicPath: 'auto'
-  },
   devtool: DEV ? 'cheap-module-source-map' : 'hidden-source-map',
-  devServer: DEV
+  devServer: !DEV
     ? {
-        port: 8080,
+        port: 8283,
         proxy: Object.fromEntries(
           Object.entries(devServerProxyConfig).map(([key, value]) => [
             key,
@@ -213,24 +224,23 @@ const commonPlugins = [
     languages: ['yaml', 'json']
   }),
   new GenerateStringTypesPlugin(),
+
   new ModuleFederationPlugin({
-    ...federationConfigJson,
+    name: 'governance',
     filename: 'remoteEntry.js',
-    shared: {
-      // ...deps,
-      react: {
-        singleton: true
-        // requiredVersion: deps.react
-      },
-      'react-dom': {
-        singleton: true
-        // requiredVersion: deps['react-dom']
-      },
-      'react-router-dom': {
-        singleton: true
-        // requiredVersion: deps['react-router-dom']
-      }
-    }
+    exposes: {
+      './App': './src/App.tsx'
+    },
+    shared: Object.assign(
+      {},
+      mapValues(pick(deps, ExactSharedPackages), version => ({
+        singleton: true,
+        requiredVersion: version
+      })),
+      mapValues(omit(deps, ExactSharedPackages), version => ({
+        requiredVersion: version
+      }))
+    )
   })
 ]
 

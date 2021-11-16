@@ -1,6 +1,0 @@
-{
-  "name": "governance",
-  "exposes": {
-    "./App": "./src/App"
-  }
-}
